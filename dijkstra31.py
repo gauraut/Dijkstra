@@ -3,8 +3,8 @@ import collections
 import cv2
 import time
 
-cl1 = 5
-cl2 = 7
+cl1 = 0
+cl2 = 5
 class Node:
 	def __init__(self, coords = None, parent = None, children = None):
 		self.parent = parent
@@ -98,15 +98,15 @@ def unit_dist(node, graph):
 
 def check_dist(node,graph):
 	shape = graph.shape
+	print(graph[65,300])
 	# import pdb; pdb.set_trace()
-	if  node[0]+cl2 <= shape[0]-1 and node[0]-cl2 >= 0 and node[1]+cl2 <= shape[1]-1 and node[1]-cl2 >= 0:
-		if graph[node[0]+cl2,node[1]+cl2] == 0 and graph[node[0]-cl2,node[1]+cl2] == 0 and graph[node[0]-cl2,node[1]-cl2] == 0  and graph[node[0]+cl2,node[1]-cl2]:
-			if graph[node[0]+1, node[1]] == 0 and graph[node[0]-1, node[1]] == 0 and graph[node[0], node[1]+1] == 0 and graph[node[0], node[1]-1] == 0:
-				return True
+	if  node[0]+cl2 <= shape[0]-1 and node[0]-cl2 >= 0 and node[1]+cl2 <= shape[1]-1 and node[1]-cl2 >= 0 and graph[node[0]+cl2,node[1]] == 0 and graph[node[0]-cl2,node[1]] == 0 and graph[node[0],node[1]-cl2] == 0  and graph[node[0],node[1]+cl2]:
+		return True
 	return False
 
 def move_up(node, graph):
 	# import pdb; pdb.set_trace()
+	print(graph[65,300])
 	if xor(check_dist(node,graph), node[0]-1 >= 0):
 		if node[0]-1 >= 0 and graph[node[0]-1, node[1]] == 0:
 			return True, [node[0]-1, node[1]]
