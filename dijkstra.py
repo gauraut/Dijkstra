@@ -370,7 +370,6 @@ def dijkstra(initial, goal):
 		new = np.argsort(np.array(opn.copy())[:,2])[0]
 		temp = opn.pop(new)
 		counter = temp[0]
-		print(counter, len(storage)-1)
 		if len(storage) > 90000:
 			print("Node not found")
 			return storage, False, explored
