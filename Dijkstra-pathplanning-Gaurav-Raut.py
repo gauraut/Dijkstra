@@ -345,6 +345,7 @@ def action(curr_node, storage, parent, graph, goal, closed, opn):
 def dijkstra(initial, goal):
 	pad_size = 0
 	graph = create_graph(pad_size)*255
+	shp_gr = graph.shape
 	animate = graph.copy()
 	clearance = 5
 	closed = []
@@ -353,6 +354,15 @@ def dijkstra(initial, goal):
 	origin_shift = graph.shape[0]-1
 	initial[0] = origin_shift - initial[0]
 	goal[0] = origin_shift - goal[0]
+	if initial[0] >= shp_gr[0] or initial[1] >= shp_gr[1] or goal[0] >= shp_gr[0] or goal[1] >= shp_gr[1] or initial[0] < 0 or initial[1] < 0 or goal[0] < 0 or goal[1] < 0:
+		print("Nodes invalid.")
+		return None, False, None
+	if graph[initial[0], initial[1]] == 255:
+		print("Initial node in obstacle space.")
+		return None, False, None
+	if graph[goal[0], goal[1]] == 255:
+		print("Goal node in obstacle space.")
+		return None, False, None
 	explored = []
 	curr_node = initial
 	storage = {0: [curr_node, 0, 0]}
