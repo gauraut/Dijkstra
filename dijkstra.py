@@ -371,7 +371,7 @@ def dijkstra(initial, goal):
 		temp = opn.pop(new)
 		counter = temp[0]
 		print(counter, len(storage)-1)
-		if counter > len(storage)-1:
+		if len(storage) > 90000:
 			print("Node not found")
 			return storage, False, explored
 
