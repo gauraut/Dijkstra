@@ -384,16 +384,23 @@ def animate(storage, explored):
 	g = create_graph()*255
 	r = create_graph()*0
 	graph = np.dstack([b,g,r]).astype(np.uint8)
+	width, height, shape2 = graph.shape
+	writer= cv2.VideoWriter('dijkstra.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 120, (height,width))
 
 	for i in explored:
 		graph[storage[i][0][0], storage[i][0][1]] = np.array([0, 155, 255])
+		writer.write(graph)
 		cv2.imshow('Graph', graph)
 		cv2.waitKey(1)
-
+	
 	curr_key = len(storage)-1
 	while curr_key != 0:
 		graph[storage[curr_key][0][0], storage[curr_key][0][1]] = np.array([255, 0, 0])
 		curr_key = storage[curr_key][2]
+	start = time.time()
+	while time.time() - start < 0.2:
+		writer.write(graph)
+	writer.release()
 	cv2.imshow('Graph', graph)
 	cv2.waitKey(0)
 
