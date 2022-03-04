@@ -385,7 +385,7 @@ def animate(storage, explored):
 	r = create_graph()*0
 	graph = np.dstack([b,g,r]).astype(np.uint8)
 	width, height, shape2 = graph.shape
-	writer= cv2.VideoWriter('dijkstra.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 120, (height,width))
+	writer= cv2.VideoWriter('dijkstra.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 1200, (height,width))
 
 	for i in explored:
 		graph[storage[i][0][0], storage[i][0][1]] = np.array([0, 155, 255])
