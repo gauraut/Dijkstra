@@ -85,41 +85,41 @@ def check_dist(node,graph):
 	return False
 
 def detect(y,x,graph):
-	cl =5
 	y = abs(249-y)
-	if (250 - (y+cl) > 0):
-		if (graph[249-(y+cl)][x] > 0):
-			#print("1")
-			return False
-	if (250 - (y-cl) <= 249):
-		if (graph[249-(y-cl)][x] > 0):
-			#print("2")
-			return False
-	if ( x+cl < 399 ):
-		if (graph[249-y][x+cl] > 0):
-			#print("3")
-			return False
-	if ( x-cl > 0 ):
-		if (graph[249-y][x-cl] > 0):
-			#print("4")
-			return False
-		
-	if (250 - (y+cl) > 0) and ( x+cl < 399 ):
-		if (graph[249-(y+cl)][x+cl] > 0):
-			#print("1")
-			return False
-	if (250 - (y-cl) <= 249) and ( x-cl > 0 ):
-		if (graph[249-(y-cl)][x-cl] > 0):
-			#print("2")
-			return False
-	if (250 - (y-cl) <= 249) and ( x+cl < 399 ):
-		if (graph[249-(y-cl)][x+cl] > 0):
-			#print("2")
-			return False
-	if (250 - (y-cl) <= 249) and ( x-cl > 0 ):
-		if (graph[249-(y-cl)][x-cl] > 0):
-			#print("2")
-			return False
+	for cl in range(0,5):
+		if (250 - (y+cl) > 0):
+			if (graph[249-(y+cl)][x] > 0):
+				#print("1")
+				return False
+		if (250 - (y-cl) <= 249):
+			if (graph[249-(y-cl)][x] > 0):
+				#print("2")
+				return False
+		if ( x+cl < 399 ):
+			if (graph[249-y][x+cl] > 0):
+				#print("3")
+				return False
+		if ( x-cl > 0 ):
+			if (graph[249-y][x-cl] > 0):
+				#print("4")
+				return False
+			
+		if (250 - (y+cl) > 0) and ( x+cl < 399 ):
+			if (graph[249-(y+cl)][x+cl] > 0):
+				#print("1")
+				return False
+		if (250 - (y-cl) <= 249) and ( x-cl > 0 ):
+			if (graph[249-(y-cl)][x-cl] > 0):
+				#print("2")
+				return False
+		if (250 - (y-cl) <= 249) and ( x+cl < 399 ):
+			if (graph[249-(y-cl)][x+cl] > 0):
+				#print("2")
+				return False
+		if (250 - (y-cl) <= 249) and ( x-cl > 0 ):
+			if (graph[249-(y-cl)][x-cl] > 0):
+				#print("2")
+				return False
 	
 	return True
 
@@ -395,7 +395,7 @@ def animate(storage, explored):
 	r = create_graph()*0
 	graph = np.dstack([b,g,r]).astype(np.uint8)
 	width, height, shape2 = graph.shape
-	writer= cv2.VideoWriter('dijkstra.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 1200, (height,width))
+	writer= cv2.VideoWriter('working.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 1200, (height,width))
 
 	for i in explored:
 		graph[storage[i][0][0], storage[i][0][1]] = np.array([0, 155, 255])
